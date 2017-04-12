@@ -119,6 +119,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true, completion: nil);
             outputView.isHidden = true
         }
+        else if(txtA.text! == "-" || txtB.text == "-" || txtC.text == "-"){
+            let alert = UIAlertController(title: "Notification", message: "Wrong Format!!!", preferredStyle: UIAlertControllerStyle.alert);
+            //add an action
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil));
+            //show alert
+            self.present(alert, animated: true, completion: nil);
+            outputView.isHidden = true
+        }
         else{
             if (!checkCharacter(character: txtA.text!) || !checkCharacter(character: txtB.text!) || !checkCharacter(character: txtC.text!)){
                 //create alert
@@ -151,7 +159,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                     else{
                         txtDelta.isHidden = true
-                        txtOutput.text=String(format: "The equation has 1 root: x = %.1f", (-b/c))
+                        txtOutput.text=String(format: "The equation has 1 root: x = %.1f", (-c/b))
                         txtX1.isHidden = true
                         txtX2.isHidden = true
                     }
@@ -165,6 +173,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                     else if (delta == 0){
                         txtOutput.text = String(format: "The equation has dual root: x = %.1f", (-b/(2*a)))
+                        txtX1.isHidden = true
+                        txtX2.isHidden = true
                     }
                     else{
                         let sqrtDelta: Double = sqrt(Double(delta))
